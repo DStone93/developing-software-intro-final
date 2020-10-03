@@ -1,0 +1,19 @@
+{
+  "name": "acsd-final-derrick",
+  "version": "1.0.0",
+  "description": "This respository is intended for the use of Focus College Students enrolled in the Advanced Certificate of Software Development located in Kelowna, BC and Surrey, BC.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DStone93/developing-software-intro-final.git"
+  },
+  "author": "Derrick Stone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DStone93/developing-software-intro-final/issues"
+  },
+  "homepage": "https://github.com/DStone93/developing-software-intro-final#readme"
+}
