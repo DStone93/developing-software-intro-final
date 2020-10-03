@@ -4,20 +4,34 @@ This respository is intended for the use of Focus College Students enrolled in t
 
 ---
 
-You can remove everything below the above line once you're ready to edit this file.
+# acsd-final-derrick
 
-## Getting Started
+## Step 1:
+* Forked Focus-College developing-software-intro-final
+* Cloned my repositories branch
+* From master, Created and checked out `feature/npm`
+* Initalized project as an NPM Package using:
+```
+npm init
+```
+* Commited new changes
+* Merged branch into master
 
-Please read the [Final Test Requirements](./assignment/readme.md)
-
-## IMPORTANT NOTICE
-
-DO NOT PUSH THIS REPOSITORY TO YOUR GITHUB ACCOUNT OR MAKE A PULL REQUEST INTO THE FINAL UNTIL DIRECTLY INSTRUCTED TO DO SO. THIS IS A TEST AND CANNOT BE COLLABORATED ON WITH OTHER STUDENTS.
-
-## Deadline For Submissions
-
-The deadline for this assignment is 5PM on Friday October 9th, 2020. No extensions can be given for this final.
-
-## Notes
-
-This is a PUBLIC repository attached to your github account and something that you can demonstrate to potential employers. Take care to ensure professionalism for both you and your team's sake. This will be the first entry into your professional portfolio.
+## Step 2:
+* From my master branch, created and checked out `feature/typescript`
+* Added typescript to my project using:
+```
+npm install --save-dev typescript
+```
+* Added NPM scripts:
+  + "compile": "tsc",
+  + "start": "node dist/index.js",
+  + "build": "npm run compile && npm run start"
+* To use these scripts run:
+```
+tsc
+npm run start
+npm run build
+```
+* Updated version
+* Commit changes with an appropriate description
