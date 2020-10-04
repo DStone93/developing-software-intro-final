@@ -1,6 +1,6 @@
 {
   "name": "acsd-final-derrick",
-  "version": "1.12.0",
+  "version": "1.11.0",
   "description": "This respository is intended for the use of Focus College Students enrolled in the Advanced Certificate of Software Development located in Kelowna, BC and Surrey, BC.",
   "main": "index.js",
   "scripts": {
