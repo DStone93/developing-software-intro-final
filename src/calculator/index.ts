@@ -11,3 +11,8 @@ export function calcHouseMaterials(
     gerald 8 8 true
     Hello*/
 }
+
+export function getHouseMaterials(name:string){
+    return name;
+    // Expected "Gerald"
+}

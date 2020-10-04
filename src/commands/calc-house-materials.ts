@@ -1,3 +1,4 @@
+import yargs = require('yargs');
 import { Arguments, Argv } from "yargs";
 import { calcHouseMaterials } from "../calculator/index";
 export function HouseMaterials(yargs: Argv): void {
@@ -62,3 +63,6 @@ export function HouseMaterials(yargs: Argv): void {
         }
     );
 }
+
+yargs.help();
+yargs.parse();
