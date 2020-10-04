@@ -1,7 +1,8 @@
-# Software Instructions
+Gerald's Construction Calculator
 
 ![SoftwareInstructions]
 ---
+# Yargs
 Created and checked out branch feature/yargs
 Installed yargs using:
   +  npm i @types/yargs --save-dev
@@ -14,6 +15,32 @@ Setup two commands in a new folder within the src folder
   + // Requirements are to setup two commands for further coding 
 
 Versioned project to 1.21.0
+
+----
+# calcHouseMaterials
+Created and checked out branch feature/calculator
+
+Created a folder within `src` called calculator
+Inside of src/calculator made the file `index.ts`
+
+Contstructed the function `calcHouseMaterials` to pass in and return using console.log
+```
+name
+width
+length
+units
+```
+
+Updated calc-house-materials in `commands/calc-house-materials` to command the new function.
+
+Made a `readme` for the new functions purpose and how to use it.
+[Read More](./src/calculator/calcHouseMaterials.md)
+
+Updated version to 1.22.0
+
+
+
+
 
 
 

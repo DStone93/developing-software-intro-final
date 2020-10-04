@@ -1,6 +1,6 @@
 import { Arguments, Argv } from "yargs";
-
-export function calcHouseMaterials(yargs: Argv): void {
+import { calcHouseMaterials } from "../calculator/index";
+export function HouseMaterials(yargs: Argv): void {
     // create a new yargs "command"
     yargs.command(
         // name the command with no spaces
@@ -25,7 +25,7 @@ export function calcHouseMaterials(yargs: Argv): void {
 
             isFeet: {
                 type: "boolean",
-                alias: "f",
+                alias: "feet",
                 description: "The flag to toggle input as feet",
             },
 
@@ -51,7 +51,7 @@ export function calcHouseMaterials(yargs: Argv): void {
             // As per step 1: Yargs
             // Create two commands (1/2) for further coding
             // Each command should use console.log to output the parameters passed
-            const requirements = YetTobeDetermined {
+            const requirements = calcHouseMaterials(
                 args.name,
                 args.width,
                 args.length,
