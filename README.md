@@ -77,3 +77,40 @@ npm run build:lint
 ```
 * Updated version
 * Commit changes with an appropriate description
+
+## Step 4:
+* From my master branch, created and checked out `feature/format`
+* Added Prettier to my project using:
+  + npm install --save-dev --save-exact prettier
+* Added .prettierignore with:
+  + node_modules
+  + dist
+* Inside of .prettierrc.json has:
+```
+{
+    "tabWidth": 4,
+    "bracketSpacing": true
+}
+```
+
+
+* Modified/Updated package.json to:
+  + "compile": "tsc",
+  + "start": "node dist/index.js",
+  + "lint": "eslint . --ext .ts",
+  + "build:prettier": "prettier --write src/**/*.ts",
+  + "build": "npm run compile && npm run start",
+  + "build:lint:prettier": "npm run lint && npm run build:prettier && npm run compile && npm run start"
+* To use these scripts use:
+```
+tsc
+npm run start
+npm run lint
+npm run prettier
+npm run build
+npm run build:lint:prettier
+// title of commands do not signify order of execution
+```
+
+* Updated version
+* Commit changes with an appropriate description

@@ -1,16 +1,15 @@
 {
   "name": "acsd-final-derrick",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "This respository is intended for the use of Focus College Students enrolled in the Advanced Certificate of Software Development located in Kelowna, BC and Surrey, BC.",
   "main": "index.js",
   "scripts": {
     "compile": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint . --ext .ts",
+    "prettier": "prettier --write src/**/*.ts",
     "build": "npm run compile && npm run start",
-    "build:lint": "npm run lint && npm run compile && npm run start"
-    
-
+    "build:lint:prettier": "npm run lint && npm run prettier && npm run compile && npm run start"
   },
   "repository": {
     "type": "git",
@@ -26,6 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
     "eslint": "^7.10.0",
+    "prettier": "2.1.2",
     "typescript": "^4.0.3"
   }
 }
