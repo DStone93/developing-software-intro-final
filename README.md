@@ -114,3 +114,51 @@ npm run build:lint:prettier
 
 * Updated version
 * Commit changes with an appropriate description
+
+## Step 5:
+* From my master branch, created and checked out `feature/testing`
+* Installed mocha/chai using:
+  + npm install chai mocha ts-node @types/chai @types/mocha --save-dev
+* Created a new folder named "tests"
+* Inside of tests, created a file named "default.spec.ts" with:
+```
+import { hello } from '../src/index';
+import { expect } from 'chai';
+import 'mocha';
+
+describe('Hello function', () => {
+
+  it('should return hello world', () => {
+    const result = hello();
+    expect(result).to.equal('Hello world!');
+  });
+
+});
+```
+* Changed `index.ts` to contain:
+```
+// Test to make sure mocha/chai works
+export const hello = () => 'Hello world!'; 
+```
+
+* Modified/Updated package.json to: 
+  + "compile": "tsc",
+  + "start": "node dist/index.js",
+  + "lint": "eslint . --ext .ts",
+  + "prettier": "prettier --write src/**/*.ts",
+  + "test": "mocha -r ts-node/register tests/**/*.spec.ts",
+  + "build": "npm run compile && npm run start",
+  + "fix:run": "npm run lint && npm run prettier && npm run test && npm run compile && npm run start"
+
+* To use these commands use:
+  ```
+  tsc
+  npm run start
+  npm run lint
+  npm run prettier
+  npm run test
+  npm run build
+  npm run fix:run
+  ```
+* Updated version
+* Commit changes with an appropriate description

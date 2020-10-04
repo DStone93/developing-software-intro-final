@@ -1,2 +1,2 @@
-// Test to make sure scripts work
-console.log("Hello!");
+// Test to make sure mocha/chai works
+export const hello = () => "Hello world!";
