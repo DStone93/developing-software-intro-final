@@ -35,3 +35,45 @@ npm run build
 ```
 * Updated version
 * Commit changes with an appropriate description
+
+## Step 3:
+* From my master branch, created and checked out `feature/lint`
+* Added ESLint to my project using:
+  + npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+* Added .eslintrc & .eslintignore
+  + Inside of .eslintrc i've included
+  ```
+  {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ]
+  }
+  ```
+  * Inside of .eslintignore:
+  ```
+  node_modules
+  dist
+  ```
+* Modified/Updated package.json to:
+  + "compile": "tsc",
+  + "start": "node dist/index.js",
+  + "lint": "eslint . --ext .ts",
+  + "build": "npm run compile && npm run start",
+  + "build:lint": "npm run lint && npm run compile && npm run start"
+* To use these scripts use:
+```
+tsc
+npm run start
+npm run lint
+npm run build
+npm run build:lint
+```
+* Updated version
+* Commit changes with an appropriate description
