@@ -3,8 +3,12 @@
 This respository is intended for the use of Focus College Students enrolled in the Advanced Certificate of Software Development located in Kelowna, BC and Surrey, BC.
 
 ---
+# Setup/instructions
+![Setup Image]
 
-# acsd-final-derrick
+
+## ACSD-Final-Derrick
+---
 
 ## Step 1:
 * Forked Focus-College developing-software-intro-final
@@ -162,3 +166,77 @@ export const hello = () => 'Hello world!';
   ```
 * Updated version
 * Commit changes with an appropriate description
+
+## Step 6:
+* From my master branch, created and checked out `feature/istanbul`
+* Installed nyc using:
+  + npm i -D nyc --save-dev
+* Installed istanbul:
+  + npm install @istanbuljs/nyc-config-typescript --save-dev
+* Created the file .nycrc.json with:
+```
+{
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
+    "check-coverage": true,
+    "reporter": ["text","html"]
+  }
+
+```
+Modified/Updated package.json to:
+  + "compile": "tsc",
+  + "start": "node dist/index.js",
+  + "lint": "eslint . --ext .ts",
+  + "prettier": "prettier --write src/**/*.ts",
+  + "test": "mocha -r ts-node/register tests/**/*.spec.ts",
+  + "test:nyc": "nyc mocha -r ts-node/register tests/**/*.spec.ts",
+  + "build": "npm run compile && npm run start",
+  + "fix:run": "npm run lint && npm run prettier && npm run test && npm run compile && npm run start"
+---
+### To just compile the application use:
+```
+tsc
+```
+### To only start the applicition without compilation use:
+```
+npm run start
+```
+### To run linting use:
+```
+npm run lint
+```
+### To Clean up your files and make them pretty use:
+```
+npm run prettier
+// Also known as formatting
+```
+### To test your targeted files use:
+```
+npm run test
+```
+### To test your targeted files with coverage use:
+```
+npm run test:nyc
+```
+### To compile and run the application use:
+``` 
+npm run build
+```
+
+### To lint, make pretty, test (without coverage as per the requirements) compile and run use:
+```
+npm run fix:run
+```
+---
+### * Updated version to 1.2.0 as this will be the final setup portion
+### * Commit changes with an appropriate description
+
+
+---
+
+
+
+
+**I will be making a directory for all the readmes once I've progressed into the application**
+
+[Setup Image]: https://thumbs.dreamstime.com/b/instructions-complex-like-puzzle-pictured-as-word-instructions-puzzle-pieces-to-show-instructions-can-be-difficult-164221016.jpg
