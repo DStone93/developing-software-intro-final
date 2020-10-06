@@ -1,3 +1,5 @@
+import { IHouseDimensions} from "./interfaces"
+
 // Simple function to be called from calc-house-materials in src/commands
 export function calcHouseMaterials(
     name: string,
@@ -5,14 +7,12 @@ export function calcHouseMaterials(
     length: number,
     units: boolean
 ) {
-    console.log(name, width, length, units);
-    return "Hello";
+    return { name, width, length, units }
     /* Expected 
-    gerald 8 8 true
-    Hello*/
-}
+    { name: 'gerald', width: 8, length: 8, units: true } 5*/
+};
 
-export function getHouseMaterials(name:string){
+export function getHouseMaterials(name: string) {
     return name;
     // Expected "Gerald"
-}
+};

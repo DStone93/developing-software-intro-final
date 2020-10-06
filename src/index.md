@@ -1,4 +1,4 @@
-// // solved the complexities of parsing command line arguments
+
 // import yargs = require('yargs');
 // import { HouseMaterials} from './commands/calc-house-materials';
 // import { getHouse } from "./commands/get-house-materials"

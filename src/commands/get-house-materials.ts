@@ -1,6 +1,6 @@
-import yargs = require('yargs');
+import yargs = require("yargs");
 import { Arguments, Argv } from "yargs";
-import { getHouseMaterials} from "../calculator/index"
+import { getHouseMaterials } from "../calculator/index";
 
 export function getHouse(yargs: Argv): void {
     // create a new yargs "command"
@@ -24,7 +24,6 @@ export function getHouse(yargs: Argv): void {
             args: Arguments<{
                 name: string;
                 client: string;
-
             }>
         ) {
             // As per step 1: Yargs
