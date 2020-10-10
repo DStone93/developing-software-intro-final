@@ -1,6 +1,8 @@
+import yargs = require("yargs");
 import { Arguments, Argv } from "yargs";
+import { getHouseMaterials } from "../calculator/index";
 
-export function getHouseMaterials(yargs: Argv): void {
+export function getHouse(yargs: Argv): void {
     // create a new yargs "command"
     yargs.command(
         // name the command with no spaces
@@ -22,17 +24,16 @@ export function getHouseMaterials(yargs: Argv): void {
             args: Arguments<{
                 name: string;
                 client: string;
-                
             }>
         ) {
             // As per step 1: Yargs
             // Create two commands (2/2) for further coding
             // Each command should use console.log to output the parameters passed
-            const recallclient = YetTobeDetermined {
-                args.name,   
-            );
-
+            const recallclient = getHouseMaterials(args.name);
             console.log(recallclient);
         }
     );
 }
+
+yargs.help();
+yargs.parse();
