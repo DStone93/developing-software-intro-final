@@ -1,15 +1,12 @@
-import { HouseMaterials } from "../commands/calc-house-materials";
 import { IHouseDimensions } from "./interfaces";
-
 
 const BEAM_WIDTH = 3.5;
 const BOARD_LENGTH = 8 * 12;
 const STUDS_OFFSET = 16;
 const BEAMS_REQUIRED_EVERY_INCHES = 20 * 12;
 
-
-function feetToInches (feet:number){
-    return feet * 12
+function feetToInches(feet: number) {
+    return feet * 12;
 }
 
 // Simple function to be called from calc-house-materials in src/commands
@@ -17,12 +14,14 @@ export function calcHouseMaterials(
     name: string,
     width: number,
     length: number,
-    units?: boolean
+    units: boolean
 ): IHouseDimensions {
     if (units == true) {
         width = feetToInches(width);
         length = feetToInches(length);
-      }
+        console.log(units,"Console log for if isFeet is true or false")
+    }
+
     return {
         name: name,
         house: {
@@ -71,6 +70,7 @@ export function calcHouseMaterials(
     };
 }
 
+// function that will be used to return saved clients and their lumber requirements
 export function getHouseMaterials(name: string): IHouseDimensions {
     return {
         name: name,
@@ -118,7 +118,6 @@ export function getHouseMaterials(name: string): IHouseDimensions {
             },
         },
     };
-
 }
 
 function getPlatesInLength(inches: number) {
@@ -138,12 +137,12 @@ function getStudsInLength(inches: number) {
     return studs + perfectWidthExtension;
 }
 
-function getBoardsInLength(inches: number): number {
-    const plates = getPlatesInLength(inches);
-    const studs = getStudsInLength(inches);
+// function getBoardsInLength(inches: number): number {
+//     const plates = getPlatesInLength(inches);
+//     const studs = getStudsInLength(inches);
 
-    return plates + studs;
-}
+//     return plates + studs;
+// }
 
 function getRequiredBeamsInLength(inches: number) {
     // for every 20 feet, we need one beam
@@ -164,15 +163,16 @@ function getWallLengthOverMinimumRequiredBeforeBeam(inches: number): number {
     return Math.max(inches - BEAMS_REQUIRED_EVERY_INCHES, 0);
 }
 
-export function calcWallLumber (inches:number) {
+export function calcWallLumber(inches: number) {
     //In the order of what the function will return
-    const plates = getPlatesInLength(inches)
-    const studs = getStudsInLength(inches)
-    const posts = getRequiredBeamsInLength(inches)
-
+    const plates = getPlatesInLength(inches);
+    const studs = getStudsInLength(inches);
+    const posts = getRequiredBeamsInLength(inches);
     return {
-        plates:plates,
-        studs:studs,
-        posts: posts
+        plates: plates,
+        studs: studs,
+        posts: posts,
     };
 }
+
+console.log(calcWallLumber(96));

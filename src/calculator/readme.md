@@ -123,3 +123,56 @@ npm run start -- get-house-materials --name Gerald
 * Updated version to 1.24.0
 
 * Commit changes with an appropriate description
+
+---
+# Step 5
+Added `calcWallLumber` to return the amount of plates, studs and posts required for a single wall.
+
+As this function requires additional calculations I reused functions from assignment 3.
+```
+function getPlatesInLength
+function getRequiredBeamsInLength
+function getStudsInLength 
+function getRequiredBeamsInLength
+function getWallLengthOverMinimumRequiredBeforeBeam
+```
+## Usage with isFeet flag true
+```
+npm run start -- calc-house-materials -w 8 -l 8 --isFeet --client gerald
+```
+
+## Returns
+```
+{ plates: 3, studs: 7, posts: 0 }
+true Console log for if isFeet is true or false
+{
+  name: 'gerald',
+  house: {
+    width: 96,
+    length: 96,
+    outsideWallArea: 0,
+    insideWallArea: 0,
+    ceilingArea: 0
+  },
+  materials: {
+    lumber: { '2x4': 0, '4x4': 0 },
+    plywood: { '4x8': 0 },
+    drywall: { '4x8': 0 }
+  },
+  waste: {
+    lumber: { '2x4': 0, '4x4': 0 },
+    plywood: { '4x8': 0 },
+    drywall: { '4x8': 0 }
+  },
+  purchase: {
+    lumber: { '2x4': 0, '4x4': 0 },
+    plywood: { '4x8': 0 },
+    drywall: { '4x8': 0 }
+  }
+}
+```
+
+* Updated version to 1.25.0
+* Commit changes with an appropriate description
+
+---

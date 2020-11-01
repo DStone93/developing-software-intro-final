@@ -1,6 +1,5 @@
 import { expect } from 'chai'
 import {calcHouseMaterials, getHouseMaterials, calcWallLumber} from '../src/calculator/index'
-
 import "mocha";
 
 
@@ -8,21 +7,26 @@ import "mocha";
 
 describe("calcHouseMaterials", () => {
   it("should return customer name gerald", () => {
-      const result= calcHouseMaterials("gerald", 8, 8, false)
+      const result= calcHouseMaterials("gerald", 8, 8, true)
       expect(result.name).to.equal("gerald")
   });
   
   it("should return length as 96", () => {
-      const result = calcHouseMaterials("gerald", 8, 8, false)
-      expect(result.house.length).to.equal(8);
+      const result = calcHouseMaterials("gerald", 8, 8, true)
+      expect(result.house.length).to.equal(96);
   });
   
   it("should return width as 96", () => {
-      const result= calcHouseMaterials("gerald", 8, 8, false)
-      expect(result.house.width).to.equal(8);
+      const result= calcHouseMaterials("gerald", 8, 8, true)
+      expect(result.house.width).to.equal(96);
   });
+
+  // Not sure how to test for the boolean yet
+  
 }); 
 
+// Tests for getHouseMaterials
+// No input is currently being saved
 describe("getHouseMaterials", () => {
   it("should return House Name", () => {
       const result = getHouseMaterials("gerald");
@@ -31,17 +35,23 @@ describe("getHouseMaterials", () => {
 }); 
 
 
-// // Tests for calcWallLumber
-// describe ("calcWallLumber"), () => {
-//   it("Hopefully returns plates, studs, and posts", () => {
-//     const result = calcWallLumber(0);
-//     expect(result.plates).to.equal(0);
-// });
-// });
+// calcWallLumber testing
+describe ("calcWallLumber", () => {
+  it("hopefully returns plates as 3", () => {
+    const result = calcWallLumber(96);
+    expect(result.plates).to.equal(3);
+  });
 
-// // describe ("calcWallLumber"), () => {
-// //   it("Hopefully returns plates, studs, and posts", () => {
-// //     const result = calcWallLumber(0);
-// //     expect(result.plates).to.equal(0)
-// //   });
-// // });
+  it("hopefully returns studs as 7", () => {
+    const result = calcWallLumber(96);
+    expect(result.studs).to.equal(7);
+  });
+
+  it("hopefully returns 0 studs", () => {
+    const result = calcWallLumber(96);
+    expect(result.posts).to.equal(0);
+  });
+  
+});
+
+
