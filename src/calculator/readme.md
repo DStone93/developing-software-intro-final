@@ -176,3 +176,25 @@ true Console log for if isFeet is true or false
 * Commit changes with an appropriate description
 
 ---
+# Step 6
+Added `calcDrywall` to calculate the amount of drywall needed for a house.
+* Note that the drywall needed is for the inner portion of the house
+* Each wall needs to have -7" subtracted as each corner is -3.5"
+* There are two width walls so total is -14"
+* Drywall covers the additional beams
+* Currently is not in use as it is not yet required
+
+## Example 16x24
+```
+ceil area = 48,772   (178(16) * 274(24))
+dwLengthAmount = 12 ( innerLength / dwWidth * 2 )
+dwWidthAmount = 8 ( innerWidth / dwWidth * 2 )
+dwArea = 4,608 (dwWidth * dwHeight)
+ceilingSheets = 11 (48,722(ceil area) / dwArea(4,608) )
+Added all together is 31 dry wall sheets
+```
+Updated version to 1.26.0
+
+Commit changes with an appropriate description
+
+---

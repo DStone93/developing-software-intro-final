@@ -36,11 +36,11 @@ Updated calc-house-materials in `commands/calc-house-materials` to command the n
 Made a `readme` for the new functions purpose and how to use it.
 [Read More](./src/calculator/readme.md)
 
-Updated version to 1.22.0
+Added in version 1.22.0
 
 ---
 # getHouseMaterials
-Created a function in `src/calculator/index.ts` to pass in and return parameters the CLI using console.log
+Created a function in `src/calculator/index.ts` to pass in and return parameters from the CLI in future versions.
 ```
 npm run start -- get-house-materials --name Gerald
 ```
@@ -48,53 +48,9 @@ Updated calc-house-materials in `commands/get-house-materials` to command the ne
 
 Updated `./src/calculator/readme.md`
 
-Versioned package to 1.23.0
+Added in version 1.23.0
 
 ---
-# feetToInches
-Added `feetToInches` to convert feet to inches if the "isFeet" flag is true.
-```
-npm run start -- calc-house-materials -w 8 -l 8 --isFeet --client gerald
-
-"true Console log for if isFeet is true or false"
-```
----
-# getPlatesInLength
-Takes in inches and calculates the amount of plates needed for a single wall.
-* Divides by 96(one board length) and rounds up
-* Multiplies by three as per Geralds requirements
-
----
-# getRequiredBeamsInLength
-For every 20 feet an additional beam is required for structural support
-
----
-# calcWallLumber
-Takes in `getPlatesInLength`, `getStudsInLength` and `getRequiredBeamsInLength` to return the amount of plates, studs and posts required for a single wall.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 [SoftwareInstructions]: https://rapidapi.com/blog/wp-content/uploads/2019/07/background-bit-bytes-2004161-768x512.jpg
 

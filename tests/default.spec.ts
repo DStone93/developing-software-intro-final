@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import {calcHouseMaterials, getHouseMaterials, calcWallLumber} from '../src/calculator/index'
+import {calcHouseMaterials, getHouseMaterials, calcWallLumber, calcDrywall} from '../src/calculator/index'
 import "mocha";
 
 
@@ -54,4 +54,20 @@ describe ("calcWallLumber", () => {
   
 });
 
-
+// Tests for calcDrywall
+describe("calcDrywall", () => {
+  it("should amount to the total sheets needed for a 8x8 house", () => {
+      const result = calcDrywall(96,96);
+      expect(result).to.equal(10);
+  });
+  
+  // ceil area = 48,772
+  // dwLengthAmount = 12
+  // dwWidthAmount = 8
+  // dwArea = 4,608
+  // ceilingSheets = 11
+  it("should amount to the total sheet needed for a 16x24 house", () => {
+    const result = calcDrywall(192,288);
+    expect(result).to.equal(31);
+  });
+});
