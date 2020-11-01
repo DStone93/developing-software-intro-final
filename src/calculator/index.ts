@@ -23,7 +23,6 @@ export function calcHouseMaterials(
     if (units == true) {
         width = feetToInches(width);
         length = feetToInches(length);
-        console.log(units, "Console log for if isFeet is true or false");
     }
 
     return {
@@ -224,7 +223,6 @@ export function calcWallLumber(inches: number) {
 }
 
 //Function to calculate the required amount of drywall sheets for the house
-// The added will not alter the total width of the inner wall
 export function calcDrywall(width: number, length: number) {
     // We need to calculate the innerwall length 
     // Each inner corner is minus 3.5" so one width wall is minus 7" x 2 for both sides
@@ -253,4 +251,17 @@ export function calcDrywall(width: number, length: number) {
     return dwLengthAmount + dwWidthAmount + ceilingSheets;
 }
 
+//function to calculate the amount of plywood needed
+export function calcPlywood (width:number, length:number){
+    // plywood sheets are 4 by 8'
+    const pwWidth = 48; // 4 x 12 for width
+
+    // length of both length walls divided by the width of one plywood sheet
+    const pwLengthAmount = Math.ceil(length / pwWidth) * 2;
+
+    // width of both width walls divided by the width of one plywood sheet
+    const pwWidthAmount = Math.ceil(width / pwWidth) * 2;
+    
+    return pwLengthAmount + pwWidthAmount 
+}
 

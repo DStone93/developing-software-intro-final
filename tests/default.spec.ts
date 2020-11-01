@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import {calcHouseMaterials, getHouseMaterials, calcWallLumber, calcDrywall} from '../src/calculator/index'
+import {calcHouseMaterials, getHouseMaterials, calcWallLumber, calcDrywall, calcPlywood} from '../src/calculator/index'
 import "mocha";
 
 
@@ -61,13 +61,19 @@ describe("calcDrywall", () => {
       expect(result).to.equal(10);
   });
   
-  // ceil area = 48,772
-  // dwLengthAmount = 12
-  // dwWidthAmount = 8
-  // dwArea = 4,608
-  // ceilingSheets = 11
-  it("should amount to the total sheet needed for a 16x24 house", () => {
+  it("should amount to the total drywallsheet needed for a 16x24 house", () => {
     const result = calcDrywall(192,288);
     expect(result).to.equal(31);
+  });
+});
+
+//Tests for calcPlywood
+describe("calcDrywall", () => {
+  // 192 / 48 = 4 * 2 = 8
+  // 288 / 48 = 6 * 2 = 12
+  //                    20
+  it("should amount to the total plywood sheets needed for a 16x24 house", () => {
+      const result = calcPlywood(192,288);
+      expect(result).to.equal(20);
   });
 });

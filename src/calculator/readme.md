@@ -1,3 +1,6 @@
+# Step 1 & 2 
+ Can be found in `readme.md` in src/commands/readme.md [Read More](../commands/readme.md)
+---
 # Step 3
 ## calcHouseMaterials
 I've created a function to test incoming paramaters from a CLI that has the required plugins. If you would like to know what you need to install for this application see to the `README.md` [Read More](../../README.md)
@@ -122,7 +125,7 @@ npm run start -- get-house-materials --name Gerald
 
 * Updated version to 1.24.0
 
-* Commit changes with an appropriate description
+* Commited changes with an appropriate description
 
 ---
 # Step 5
@@ -173,11 +176,13 @@ true Console log for if isFeet is true or false
 ```
 
 * Updated version to 1.25.0
-* Commit changes with an appropriate description
+* Commited changes with an appropriate description
 
 ---
 # Step 6
 Added `calcDrywall` to calculate the amount of drywall needed for a house.
+
+Takes in Width:number and length:number to return the amount of drywall needed
 * Note that the drywall needed is for the inner portion of the house
 * Each wall needs to have -7" subtracted as each corner is -3.5"
 * There are two width walls so total is -14"
@@ -195,6 +200,22 @@ Added all together is 31 dry wall sheets
 ```
 Updated version to 1.26.0
 
-Commit changes with an appropriate description
+Commited changes with an appropriate description
 
 ---
+# Step 7
+Added `calcPlywood` to return the total amount of plywood needed for just the exterior walls
+
+Takes in width:number and length:number to return the amount of plywood needed
+* No subtractions are needed for the exterior dimensions as the plywood covers all of it
+
+## Example
+```
+pwLengthAmount = 12 ( length / pwWidth * 2 )
+pwWidthAmount = 8 ( width/ pwWidth * 2 )
+Added together totals 20 plywood sheets for a 16x24 house
+```
+
+Updated version to 1.27.0
+
+Commited changes with an appropriate description
