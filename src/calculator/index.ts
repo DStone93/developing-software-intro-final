@@ -265,3 +265,64 @@ export function calcPlywood (width:number, length:number){
     return pwLengthAmount + pwWidthAmount 
 }
 
+
+function calcMaterials (
+    width:number, 
+    length:number, 
+    calcWallLumber: any,
+    calcDrywall:any,
+    calcPlywood:any
+) :IHouseDimensions {
+    const wallLumber = calcWallLumber(width) + calcWallLumber(length)
+    const dryWall = calcDrywall(width) + calcDrywall(length)
+    const plyWood = calcPlywood(calcPlywood.width) + calcPlywood(calcPlywood.length)
+    return {
+        name: "test",
+        house: {
+            width: width,
+            length: length,
+            outsideWallArea: 0,
+            insideWallArea: 0,
+            ceilingArea: 0,
+        },
+        materials: {
+            lumber: {
+                "2x4": (wallLumber.studs * 2) + (wallLumber.plates * 2),
+                "4x4": wallLumber.posts + 4,
+            },
+            
+            plywood: {
+                "4x8": plyWood,
+            },
+            drywall: {
+                "4x8": dryWall,
+            },
+        },
+        waste: {
+            lumber: {
+                "2x4": 0,
+                "4x4": 0,
+            },
+            plywood: {
+                "4x8": 0,
+            },
+            drywall: {
+                "4x8": 0,
+            },
+        },
+        purchase: {
+            lumber: {
+                "2x4": 0,
+                "4x4": 0,
+            },
+            plywood: {
+                "4x8": 0,
+            },
+            drywall: {
+                "4x8": 0,
+            },
+        },
+    };
+}
+
+
