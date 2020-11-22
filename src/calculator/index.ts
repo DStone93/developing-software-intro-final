@@ -266,29 +266,34 @@ export function calcPlywood (width:number, length:number){
 }
 
 
-function calcMaterials (
+export function calcMaterials (
     width:number, 
     length:number, 
     calcWallLumber: any,
     calcDrywall:any,
     calcPlywood:any
 ) :IHouseDimensions {
-    const wallLumber = calcWallLumber(width) + calcWallLumber(length)
-    const dryWall = calcDrywall(width) + calcDrywall(length)
-    const plyWood = calcPlywood(calcPlywood.width) + calcPlywood(calcPlywood.length)
+    const wallLumberLength = calcWallLumber(length)
+    const wallLumberWidth = calcWallLumber(length)
+
+    const twobyfours = wallLumberLength.studs * 2 + wallLumberWidth.studs * 2;
+    const fourbyfours = wallLumberLength.posts + wallLumberLength.posts;
+
+    const dryWall = calcDrywall(width, length)
+    const plyWood = calcPlywood(width, length)
     return {
         name: "test",
         house: {
             width: width,
             length: length,
-            outsideWallArea: 0,
-            insideWallArea: 0,
-            ceilingArea: 0,
+            outsideWallArea: length * width * 4,
+            insideWallArea: length * width * 4 - fourbyfours * 7,
+            ceilingArea: length * width,
         },
         materials: {
             lumber: {
-                "2x4": (wallLumber.studs * 2) + (wallLumber.plates * 2),
-                "4x4": wallLumber.posts + 4,
+                "2x4": twobyfours,
+                "4x4": fourbyfours + 4,
             },
             
             plywood: {
@@ -325,4 +330,4 @@ function calcMaterials (
     };
 }
 
-
+console.log(calcMaterials(96,96, calcWallLumber, calcDrywall, calcPlywood));

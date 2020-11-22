@@ -219,3 +219,16 @@ Added together totals 20 plywood sheets for a 16x24 house
 Updated version to 1.27.0
 
 Commited changes with an appropriate description
+
+---
+# Step 8
+Added `calcMaterials` to return materials required for a house without waste and total purchase
+
+Takes in Takes in width:number and length:number to return the materials required for a house without and the area of the house.
+
+To be updated
+
+Updated version to 1.28.0
+
+Commited changes with an appropriate description
+
