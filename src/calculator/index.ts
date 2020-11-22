@@ -276,8 +276,8 @@ export function calcMaterials (
     const wallLumberLength = calcWallLumber(length)
     const wallLumberWidth = calcWallLumber(length)
 
-    const twobyfours = wallLumberLength.studs * 2 + wallLumberWidth.studs * 2;
-    const fourbyfours = wallLumberLength.posts + wallLumberLength.posts;
+    const totalBoards = wallLumberLength.studs * 2 + wallLumberWidth.studs * 2;
+    const totalPosts = wallLumberLength.posts + wallLumberLength.posts;
 
     const dryWall = calcDrywall(width, length)
     const plyWood = calcPlywood(width, length)
@@ -287,13 +287,13 @@ export function calcMaterials (
             width: width,
             length: length,
             outsideWallArea: length * width * 4,
-            insideWallArea: length * width * 4 - fourbyfours * 7,
+            insideWallArea: (length - 7) * (width - 7) * 4 ,
             ceilingArea: length * width,
         },
         materials: {
             lumber: {
-                "2x4": twobyfours,
-                "4x4": fourbyfours + 4,
+                "2x4": totalBoards,
+                "4x4": totalPosts + 4
             },
             
             plywood: {
