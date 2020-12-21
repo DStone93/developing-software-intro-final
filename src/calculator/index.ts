@@ -4,14 +4,9 @@ const BEAM_WIDTH = 3.5;
 const BOARD_LENGTH = 8 * 12;
 const STUDS_OFFSET = 16;
 const BEAMS_REQUIRED_EVERY_INCHES = 20 * 12;
-const FULL_BOARDS_IN_SECTION = Math.floor(
-    BEAMS_REQUIRED_EVERY_INCHES / BOARD_LENGTH
-);
-const FULL_BOARD_SECTION_SIZE = FULL_BOARDS_IN_SECTION * BOARD_LENGTH;
 
-function feetToInches(feet: number) {
-    return feet * 12;
-}
+
+
 
 // Simple function to be called from calc-house-materials in src/commands
 export function calcHouseMaterials(
@@ -25,102 +20,81 @@ export function calcHouseMaterials(
         length = feetToInches(length);
     }
 
+    console.log(units);
+
+    const wallLumberLength = calcWallLumber(length);
+    const wallLumberWidth = calcWallLumber(width);
+
+    const totalBoards = wallLumberLength.studs * 2 + wallLumberWidth.studs * 2;
+    const totalPosts = wallLumberLength.posts + wallLumberLength.posts;
+
     return {
         name: name,
         house: {
             width: width,
             length: length,
-            outsideWallArea: 0,
-            insideWallArea: 0,
-            ceilingArea: 0,
+            outsideWallArea: length * width * 4,
+            insideWallArea: (length - 7) * (width - 7) * 4,
+            ceilingArea: length * width,
         },
         materials: {
             lumber: {
-                "2x4": 0,
-                "4x4": 0,
+                "2x4": totalBoards,
+                "4x4": totalPosts + 4,
             },
             plywood: {
-                "4x8": 0,
+                "4x8": calcPlywood(width, length),
             },
             drywall: {
-                "4x8": 0,
+                "4x8": calcDrywall(width, length),
             },
         },
         waste: {
             lumber: {
-                "2x4": 0,
-                "4x4": 0,
+                "2x4": calcWaste(totalBoards),
+                "4x4": calcWaste(totalPosts + 4),
             },
             plywood: {
-                "4x8": 0,
+                "4x8": calcWaste(calcPlywood(width, length)),
             },
             drywall: {
-                "4x8": 0,
+                "4x8": calcWaste(calcDrywall(width, length)),
             },
         },
         purchase: {
             lumber: {
-                "2x4": 0,
-                "4x4": 0,
+                "2x4": calcPurchase(totalBoards),
+                "4x4": calcPurchase(totalPosts + 4),
             },
             plywood: {
-                "4x8": 0,
+                "4x8": calcPurchase(calcPlywood(width, length)),
             },
             drywall: {
-                "4x8": 0,
+                "4x8": calcPurchase(calcDrywall(width, length)),
             },
         },
     };
 }
 
+
 // function that will be used to return saved clients and their lumber requirements
 export function getHouseMaterials(name: string): IHouseDimensions {
-    return {
-        name: name,
-        house: {
-            width: 0,
-            length: 0,
-            outsideWallArea: 0,
-            insideWallArea: 0,
-            ceilingArea: 0,
-        },
-        materials: {
-            lumber: {
-                "2x4": 0,
-                "4x4": 0,
-            },
-            plywood: {
-                "4x8": 0,
-            },
-            drywall: {
-                "4x8": 0,
-            },
-        },
-        waste: {
-            lumber: {
-                "2x4": 0,
-                "4x4": 0,
-            },
-            plywood: {
-                "4x8": 0,
-            },
-            drywall: {
-                "4x8": 0,
-            },
-        },
-        purchase: {
-            lumber: {
-                "2x4": 0,
-                "4x4": 0,
-            },
-            plywood: {
-                "4x8": 0,
-            },
-            drywall: {
-                "4x8": 0,
-            },
-        },
-    };
+    return;
+}
+
+function feetToInches(feet: number) {
+    return feet * 12;
+}
+
+export function calcWaste(waste: number) {
+    let materialForWaste = Math.ceil(waste * 0.1);
+    return materialForWaste;
+}
+
+export function calcPurchase(timber: number) {
+    let purchase = calcWaste(timber);
+    let total = purchase + timber;
+    return total;
 }
 
 function getPlatesInLength(inches: number) {
@@ -140,12 +114,6 @@ function getStudsInLength(inches: number) {
     return studs + perfectWidthExtension;
 }
 
-// function getBoardsInLength(inches: number): number {
-//     const plates = getPlatesInLength(inches);
-//     const studs = getStudsInLength(inches);
-
-//     return plates + studs;
-// }
 
 function getRequiredBeamsInLength(inches: number) {
     // for every 20 feet, we need one beam
@@ -164,50 +132,6 @@ function getRequiredBeamsInLength(inches: number) {
 
 function getWallLengthOverMinimumRequiredBeforeBeam(inches: number): number {
     return Math.max(inches - BEAMS_REQUIRED_EVERY_INCHES, 0);
-
-}
-
-function isBeamRequired(inches: number): number {
-    // negative numbers are zero
-    const wallLengthOverMinRequired = Math.max(
-        inches - BEAMS_REQUIRED_EVERY_INCHES,
-        0
-    );
-
-    // remove decimals
-    const wholeNumber = Math.ceil(wallLengthOverMinRequired);
-
-    // returns 1 (at least one beam required ) or 0 (no beams required)
-    const isBeamRequired = Math.min(wholeNumber, 1);
-
-    return isBeamRequired;
-}
-
-function getFullSections(inches: number, beams: number) {
-    // how many inches will we remove from a section between beams to get to the last full board
-    const inchesReducedPerSection =
-        BEAMS_REQUIRED_EVERY_INCHES - FULL_BOARD_SECTION_SIZE;
-
-    // how big is the last section if all beams are at BEAMS_REQUIRED_EVERY_INCHES
-    const lastSectionSize =
-        inches - beams * (BEAMS_REQUIRED_EVERY_INCHES + BEAM_WIDTH);
-
-    // how many inches of boards can we add to the last section before it will add an additional beam to the structure
-    const remainingBeforeNewBeam =
-        BEAMS_REQUIRED_EVERY_INCHES - lastSectionSize;
-
-    // how many complete portions of the inchesReducedPerSection can we move to the last section
-    let fullSections = Math.floor(
-        remainingBeforeNewBeam / inchesReducedPerSection
-    );
-
-    // even if we can FIT fullSections moved into the last portion, we might not HAVE them in our length
-    fullSections = Math.min(fullSections, beams);
-
-    // safeguard inches not requiring a beam and return value
-    fullSections = fullSections * isBeamRequired(inches);
-
-    return fullSections;
 }
 
 export function calcWallLumber(inches: number) {
@@ -224,12 +148,12 @@ export function calcWallLumber(inches: number) {
 
 //Function to calculate the required amount of drywall sheets for the house
 export function calcDrywall(width: number, length: number) {
-    // We need to calculate the innerwall length 
+    // We need to calculate the innerwall length
     // Each inner corner is minus 3.5" so one width wall is minus 7" x 2 for both sides
     // same applies for the length
-    const innerWidth = width - 14
-    const innerLength = length - 14
-    
+    const innerWidth = width - 14;
+    const innerLength = length - 14;
+
     // drywall sheets are 4 by 8'
     // Need to calculate the amount of drywall for the walls and ceiling
     const dwWidth = 48; // 4 x 12 for width
@@ -238,7 +162,7 @@ export function calcDrywall(width: number, length: number) {
 
     // ceiling drywall
     const ceilingArea = innerWidth * innerLength;
-    
+
     // length of both length walls divided by the width of one drywall sheet
     const dwLengthAmount = Math.ceil(innerLength / dwWidth) * 2;
 
@@ -252,7 +176,7 @@ export function calcDrywall(width: number, length: number) {
 }
 
 //function to calculate the amount of plywood needed
-export function calcPlywood (width:number, length:number){
+export function calcPlywood(width: number, length: number) {
     // plywood sheets are 4 by 8'
     const pwWidth = 48; // 4 x 12 for width
 
@@ -261,73 +185,6 @@ export function calcPlywood (width:number, length:number){
 
     // width of both width walls divided by the width of one plywood sheet
     const pwWidthAmount = Math.ceil(width / pwWidth) * 2;
-    
-    return pwLengthAmount + pwWidthAmount 
+
+    return pwLengthAmount + pwWidthAmount;
 }
-
-
-export function calcMaterials (
-    width:number, 
-    length:number, 
-    calcWallLumber: any,
-    calcDrywall:any,
-    calcPlywood:any
-) :IHouseDimensions {
-    const wallLumberLength = calcWallLumber(length)
-    const wallLumberWidth = calcWallLumber(length)
-
-    const totalBoards = wallLumberLength.studs * 2 + wallLumberWidth.studs * 2;
-    const totalPosts = wallLumberLength.posts + wallLumberLength.posts;
-
-    const dryWall = calcDrywall(width, length)
-    const plyWood = calcPlywood(width, length)
-    return {
-        name: "test",
-        house: {
-            width: width,
-            length: length,
-            outsideWallArea: length * width * 4,
-            insideWallArea: (length - 7) * (width - 7) * 4 ,
-            ceilingArea: length * width,
-        },
-        materials: {
-            lumber: {
-                "2x4": totalBoards,
-                "4x4": totalPosts + 4
-            },
-            
-            plywood: {
-                "4x8": plyWood,
-            },
-            drywall: {
-                "4x8": dryWall,
-            },
-        },
-        waste: {
-            lumber: {
-                "2x4": 0,
-                "4x4": 0,
-            },
-            plywood: {
-                "4x8": 0,
-            },
-            drywall: {
-                "4x8": 0,
-            },
-        },
-        purchase: {
-            lumber: {
-                "2x4": 0,
-                "4x4": 0,
-            },
-            plywood: {
-                "4x8": 0,
-            },
-            drywall: {
-                "4x8": 0,
-            },
-        },
-    };
-}
-
-console.log(calcMaterials(96,96, calcWallLumber, calcDrywall, calcPlywood));

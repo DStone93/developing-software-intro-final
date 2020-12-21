@@ -1,7 +1,6 @@
-# Step 1 & 2 
- Can be found in `readme.md` in src/commands/readme.md [Read More](../commands/readme.md)
+![Software Image]
 ---
-# Step 3
+---
 ## calcHouseMaterials
 I've created a function to test incoming paramaters from a CLI that has the required plugins. If you would like to know what you need to install for this application see to the `README.md` [Read More](../../README.md)
 ### function `calcHouseMaterials`:
@@ -48,7 +47,7 @@ Gerald
 ```
 
 ---
-# Step 4
+---
 * As required, I made an interface that is used to return the output as Gerald requested. It can be found in src/calculator/interfaces.ts
 
 * I had to change `calcHouseMaterials` and `getHouseMaterials` to return the same output as the inteface
@@ -128,7 +127,7 @@ npm run start -- get-house-materials --name Gerald
 * Commited changes with an appropriate description
 
 ---
-# Step 5
+---
 Added `calcWallLumber` to return the amount of plates, studs and posts required for a single wall.
 
 As this function requires additional calculations I reused functions from assignment 3.
@@ -136,8 +135,6 @@ As this function requires additional calculations I reused functions from assign
 function getPlatesInLength
 function getRequiredBeamsInLength
 function getStudsInLength 
-function getRequiredBeamsInLength
-function getWallLengthOverMinimumRequiredBeforeBeam
 ```
 ## Usage with isFeet flag true
 ```
@@ -179,7 +176,7 @@ true Console log for if isFeet is true or false
 * Commited changes with an appropriate description
 
 ---
-# Step 6
+---
 Added `calcDrywall` to calculate the amount of drywall needed for a house.
 
 Takes in Width:number and length:number to return the amount of drywall needed
@@ -203,7 +200,7 @@ Updated version to 1.26.0
 Commited changes with an appropriate description
 
 ---
-# Step 7
+---
 Added `calcPlywood` to return the total amount of plywood needed for just the exterior walls
 
 Takes in width:number and length:number to return the amount of plywood needed
@@ -221,14 +218,48 @@ Updated version to 1.27.0
 Commited changes with an appropriate description
 
 ---
-# Step 8
-Added `calcMaterials` to return materials required for a house without waste and total purchase
+---
+Added `calcWaste` to calculate the amount of waste wanted for a house with specific dimensions. 
 
-Takes in Takes in width:number and length:number to return the materials required for a house without and the area of the house.
+Takes in one paramater ( used for both width and length) and multiplies them by 0.1 to return the amount of wasted required.
 
-To be updated
+Example
+```
+materials:
+   { lumber: { '2x4': 28, '4x4': 4 },
+     plywood: { '4x8': 8 },
+     drywall: { '4x8': 10 } },
+  waste:
+   { lumber: { '2x4': 3, '4x4': 1 },
+     plywood: { '4x8': 1 },
+     drywall: { '4x8': 1 } },
 
-Updated version to 1.28.0
+```
 
-Commited changes with an appropriate description
+---
+---
+Added `calcPurchase` to calculate the total purchase of both the materials and waste added together.
 
+Takes in one paramater that will be used in 'calcHouseMaterials` to calculate the total amount of lumber required.
+
+Example
+```
+  materials:
+   { lumber: { '2x4': 28, '4x4': 4 },
+     plywood: { '4x8': 8 },
+     drywall: { '4x8': 10 } },
+  waste:
+   { lumber: { '2x4': 3, '4x4': 1 },
+     plywood: { '4x8': 1 },
+     drywall: { '4x8': 1 } },
+  purchase:
+   { lumber: { '2x4': 31, '4x4': 5 },
+     plywood: { '4x8': 9 },
+     drywall: { '4x8': 11 } } }
+
+```
+
+---
+---
+
+[Software Image]: https://i2.wp.com/storage.googleapis.com/blog-images-backup/1*KTh3puTlJIF6vAuUUu_LAQ.jpeg?ssl=1

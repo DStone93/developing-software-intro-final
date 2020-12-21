@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import {calcHouseMaterials, getHouseMaterials, calcWallLumber, calcDrywall, calcPlywood, calcMaterials} from '../src/calculator/index'
+import {calcHouseMaterials, getHouseMaterials, calcWallLumber, calcDrywall, calcPlywood, calcWaste, calcPurchase} from '../src/calculator/index'
 import "mocha";
 
 
@@ -21,18 +21,32 @@ describe("calcHouseMaterials", () => {
       expect(result.house.width).to.equal(96);
   });
 
-  // Not sure how to test for the boolean yet
+  it("should return outsideWallArea as 36864", () => {
+    const result= calcHouseMaterials("gerald", 8, 8, true)
+    expect(result.house.outsideWallArea).to.equal(36864);
+  });
+
+  it("should return insideWallArea as 31684", () => {
+    const result= calcHouseMaterials("gerald", 8, 8, true)
+    expect(result.house.insideWallArea).to.equal(31684);
+  });
+
+  it("should return ceilingArea as 31684", () => {
+    const result= calcHouseMaterials("gerald", 8, 8, true)
+    expect(result.house.ceilingArea).to.equal(9216);
+  });
+
   
 }); 
 
 // Tests for getHouseMaterials
 // No input is currently being saved
-describe("getHouseMaterials", () => {
-  it("should return House Name", () => {
-      const result = getHouseMaterials("gerald");
-      expect(result.name).to.equal("gerald");
-  });
-}); 
+// describe("getHouseMaterials", () => {
+//   it("should return House Name", () => {
+//       const result = getHouseMaterials("gerald");
+//       expect(result.name).to.equal("gerald");
+//   });
+// }); 
 
 
 // calcWallLumber testing
@@ -78,40 +92,43 @@ describe("calcDrywall", () => {
   });
 });
 
-//Tests for calcMaterials
-describe("calcMaterials", () => {
-  // it("hopefully returns materials for drywall", () => {
-  //   const result = calcMaterials(96,96, calcWallLumber, calcDrywall, calcPlywood)
-  //   expect(result.materials.drywall).to.equal(10);
-  // });
-
-  // it("hopefully returns materials for plywood", () => {
-  //   const result = calcMaterials(96,96, calcWallLumber, calcDrywall, calcPlywood)
-  //   expect(result.materials.plywood).to.equal(8);
-  // });
-
-  it("hopefully returnsmaterials for posts", () => {
-    const result = calcMaterials(96,96, calcWallLumber, calcDrywall, calcPlywood)
-    expect(result.materials.lumber["4x4"]).to.equal(4);
+// Tests for calcWaste
+describe("calcWaste", () => {
+  it("should return the waste required for 2x4s", () => {
+      const result = calcWaste(28);
+      expect(result).to.equal(3);
   });
-
-  it("hopefully returns materials for boards", () => {
-    const result = calcMaterials(96,96, calcWallLumber, calcDrywall, calcPlywood)
-    expect(result.materials.lumber["2x4"]).to.equal(28);
+  it("should return the waste required for 4x4s", () => {
+    const result = calcWaste(4);
+    expect(result).to.equal(1);
   });
-
-  it("hopefully returns area for outsideWallArea", () => {
-    const result = calcMaterials(96,96, calcWallLumber, calcDrywall, calcPlywood)
-    expect(result.house.outsideWallArea).to.equal(36864);
+  it("should return the waste required for plywood", () => {
+    const result = calcWaste(calcPlywood(96,96));
+    expect(result).to.equal(1);
   });
-
-  it("hopefully returns area for insideWallArea", () => {
-    const result = calcMaterials(96,96, calcWallLumber, calcDrywall, calcPlywood)
-    expect(result.house.insideWallArea).to.equal(36864);
+  it("should return the waste required for drywall", () => {
+    const result = calcWaste(calcDrywall(96,96));
+    expect(result).to.equal(1);
   });
+  
+});
 
-  it("hopefully returns area for ceilingArea", () => {
-    const result = calcMaterials(96,96, calcWallLumber, calcDrywall, calcPlywood)
-    expect(result.house.ceilingArea).to.equal(9216);
+describe("calcPurchase", () => {
+  it("should return the purchase required for 2x4s", () => {
+      const result = calcPurchase(28);
+      expect(result).to.equal(31);
   });
+  it("should return the purchase required for 4x4s", () => {
+    const result = calcPurchase(4);
+    expect(result).to.equal(5);
+  });
+  it("should return the purchase required for plywood", () => {
+    const result = calcPurchase(calcPlywood(96,96));
+    expect(result).to.equal(9);
+  });
+  it("should return the purchase required for drywall", () => {
+    const result = calcPurchase(calcDrywall(96,96));
+    expect(result).to.equal(11);
+  });
+  
 });
