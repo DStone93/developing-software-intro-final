@@ -29,8 +29,12 @@ export function getHouse(yargs: Argv): void {
             // As per step 1: Yargs
             // Create two commands (2/2) for further coding
             // Each command should use console.log to output the parameters passed
-            const recallclient = getHouseMaterials(args.name);
-            console.log(recallclient);
+            try {
+                let jsonData = require(`../../dist/data/${args.name}.json`);
+                console.log(jsonData);
+            } catch (err) {
+                console.log("No such Customer exists");
+            }
         }
     );
 }

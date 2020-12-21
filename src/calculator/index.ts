@@ -5,9 +5,6 @@ const BOARD_LENGTH = 8 * 12;
 const STUDS_OFFSET = 16;
 const BEAMS_REQUIRED_EVERY_INCHES = 20 * 12;
 
-
-
-
 // Simple function to be called from calc-house-materials in src/commands
 export function calcHouseMaterials(
     name: string,
@@ -20,7 +17,11 @@ export function calcHouseMaterials(
         length = feetToInches(length);
     }
 
-    console.log(units);
+    if (width < 48 || width > 720 || length < 48 || length > 720) {
+        throw RangeError(
+            "Houses cannot be smaller than 4 feet or greater than 60 feet."
+        );
+    }
 
     const wallLumberLength = calcWallLumber(length);
     const wallLumberWidth = calcWallLumber(width);
@@ -76,7 +77,6 @@ export function calcHouseMaterials(
     };
 }
 
-
 // function that will be used to return saved clients and their lumber requirements
 export function getHouseMaterials(name: string): IHouseDimensions {
     return;
@@ -113,7 +113,6 @@ function getStudsInLength(inches: number) {
     const perfectWidthExtension = isNotPerfectWidth * -1 + 1;
     return studs + perfectWidthExtension;
 }
-
 
 function getRequiredBeamsInLength(inches: number) {
     // for every 20 feet, we need one beam

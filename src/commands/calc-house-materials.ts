@@ -1,7 +1,7 @@
 import yargs = require("yargs");
 import { Arguments, Argv } from "yargs";
 import { calcHouseMaterials } from "../calculator/index";
-import { calcWallLumber } from "../calculator/index";
+import { Houses } from "../calculator/interfaces";
 export function HouseMaterials(yargs: Argv): void {
     // create a new yargs "command"
     yargs.command(
@@ -59,7 +59,7 @@ export function HouseMaterials(yargs: Argv): void {
                 args.length,
                 args.isFeet
             );
-
+            Houses.save(requirements);
             console.log(requirements);
         }
     );

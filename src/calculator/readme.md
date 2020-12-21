@@ -58,34 +58,32 @@ Gerald
 ```
 npm run start -- calc-house-materials -w 8 -l 8 --isFeet --client gerald
 ```
+or
+```
+npm run start -- calc-house-materials -w 96 -l 96 --client gerald
+```
 
 ## Returns 
 ```
-{
-  name: 'gerald',
-  house: {
-    width: 8,
-    length: 8,
-    outsideWallArea: 0,
-    insideWallArea: 0,
-    ceilingArea: 0
-  },
-  materials: {
-    lumber: { '2x4': 0, '4x4': 0 },
-    plywood: { '4x8': 0 },
-    drywall: { '4x8': 0 }
-  },
-  waste: {
-    lumber: { '2x4': 0, '4x4': 0 },
-    plywood: { '4x8': 0 },
-    drywall: { '4x8': 0 }
-  },
-  purchase: {
-    lumber: { '2x4': 0, '4x4': 0 },
-    plywood: { '4x8': 0 },
-    drywall: { '4x8': 0 }
-  }
-}
+{ name: 'gerald',
+  house:
+   { width: 96,
+     length: 96,
+     outsideWallArea: 36864,
+     insideWallArea: 31684,
+     ceilingArea: 9216 },
+  materials:
+   { lumber: { '2x4': 28, '4x4': 4 },
+     plywood: { '4x8': 8 },
+     drywall: { '4x8': 10 } },
+  waste:
+   { lumber: { '2x4': 3, '4x4': 1 },
+     plywood: { '4x8': 1 },
+     drywall: { '4x8': 1 } },
+  purchase:
+   { lumber: { '2x4': 31, '4x4': 5 },
+     plywood: { '4x8': 9 },
+     drywall: { '4x8': 11 } } }
 ```
 
 ## Usage of `getHouseMaterials`
@@ -95,31 +93,25 @@ npm run start -- get-house-materials --name Gerald
 
 ## Returns 
 ```
-{
-  name: 'Gerald',
-  house: {
-    width: 0,
-    length: 0,
-    outsideWallArea: 0,
-    insideWallArea: 0,
-    ceilingArea: 0
-  },
-  materials: {
-    lumber: { '2x4': 0, '4x4': 0 },
-    plywood: { '4x8': 0 },
-    drywall: { '4x8': 0 }
-  },
-  waste: {
-    lumber: { '2x4': 0, '4x4': 0 },
-    plywood: { '4x8': 0 },
-    drywall: { '4x8': 0 }
-  },
-  purchase: {
-    lumber: { '2x4': 0, '4x4': 0 },
-    plywood: { '4x8': 0 },
-    drywall: { '4x8': 0 }
-  }
-}
+{ name: 'gerald',
+  house:
+   { width: 96,
+     length: 96,
+     outsideWallArea: 36864,
+     insideWallArea: 31684,
+     ceilingArea: 9216 },
+  materials:
+   { lumber: { '2x4': 28, '4x4': 4 },
+     plywood: { '4x8': 8 },
+     drywall: { '4x8': 10 } },
+  waste:
+   { lumber: { '2x4': 3, '4x4': 1 },
+     plywood: { '4x8': 1 },
+     drywall: { '4x8': 1 } },
+  purchase:
+   { lumber: { '2x4': 31, '4x4': 5 },
+     plywood: { '4x8': 9 },
+     drywall: { '4x8': 11 } } }
 ```
 
 * Updated version to 1.24.0

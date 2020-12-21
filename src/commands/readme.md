@@ -7,12 +7,6 @@ Created and checked out branch feature/yargs
 Installed yargs using:
   +  npm i @types/yargs --save-dev
 
-Setup two commands in a new folder within the src folder
-  + calc-house-materials
- ~~[Read More](./src/commands/calc-house-materials.ts)~~
-  + get-house-materials
-~~[Read More](./src/commands/calc-house-materials.ts)~~
-  + // Requirements are to setup two commands for further coding 
 
 Versioned project to 1.21.0
 
@@ -25,16 +19,13 @@ Inside of src/calculator made the file `index.ts`
 
 Contstructed the function `calcHouseMaterials` to pass in and return parameters using console.log
 ```
-name
-width
-length
-units
+npm run start -- calc-house-materials -w 96 -l 96 --client Gerald
 ```
 
 Updated calc-house-materials in `commands/calc-house-materials` to command the new function.
 
 Made a `readme` for the new functions purpose and how to use it.
-[Read More](./src/calculator/readme.md)
+[Read More](/src/calculator/readme.md)
 
 Added in version 1.22.0
 
